@@ -1,0 +1,462 @@
+<?xml version='1.0' encoding='utf-8' ?>
+
+<!-- build 20231.23.0909.1155                               -->
+<workbook original-version='18.1' source-build='2023.1.6 (20231.23.0909.1155)' source-platform='win' version='18.1' xmlns:user='http://www.tableausoftware.com/xml/user'>
+  <document-format-change-manifest>
+    <_.fcp.AnimationOnByDefault.true...AnimationOnByDefault />
+    <_.fcp.MarkAnimation.true...MarkAnimation />
+    <_.fcp.ObjectModelEncapsulateLegacy.true...ObjectModelEncapsulateLegacy />
+    <_.fcp.ObjectModelTableType.true...ObjectModelTableType />
+    <_.fcp.SchemaViewerObjectModel.true...SchemaViewerObjectModel />
+    <SheetIdentifierTracking />
+    <WindowsPersistSimpleIdentifiers />
+  </document-format-change-manifest>
+  <preferences>
+    <preference name='ui.encoding.shelf.height' value='24' />
+    <preference name='ui.shelf.height' value='26' />
+  </preferences>
+  <_.fcp.AnimationOnByDefault.false...style>
+    <_.fcp.AnimationOnByDefault.false..._.fcp.MarkAnimation.true...style-rule element='animation'>
+      <_.fcp.AnimationOnByDefault.false...format attr='animation-on' value='ao-on' />
+    </_.fcp.AnimationOnByDefault.false..._.fcp.MarkAnimation.true...style-rule>
+  </_.fcp.AnimationOnByDefault.false...style>
+  <datasources>
+    <datasource caption='Global Missing Migrants Dataset' inline='true' name='federated.0642gm418ey33p130dc220gwgtlj' version='18.1'>
+      <connection class='federated'>
+        <named-connections>
+          <named-connection caption='Global Missing Migrants Dataset' name='textscan.0loeenk1bgxu711fvxquk1eccmkx'>
+            <connection class='textscan' directory='C:/Users/Utkal/Desktop/6030 Data Visualization' filename='Global Missing Migrants Dataset.csv' password='' server='' />
+          </named-connection>
+        </named-connections>
+        <_.fcp.ObjectModelEncapsulateLegacy.false...relation connection='textscan.0loeenk1bgxu711fvxquk1eccmkx' name='Global Missing Migrants Dataset.csv' table='[Global Missing Migrants Dataset#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_IN' separator=','>
+            <column datatype='string' name='Incident Type' ordinal='0' />
+            <column datatype='integer' name='Incident year' ordinal='1' />
+            <column datatype='string' name='Reported Month' ordinal='2' />
+            <column datatype='string' name='Region of Origin' ordinal='3' />
+            <column datatype='string' name='Region of Incident' ordinal='4' />
+            <column datatype='string' name='Country of Origin' ordinal='5' />
+            <column datatype='integer' name='Number of Dead' ordinal='6' />
+            <column datatype='integer' name='Minimum Estimated Number of Missing' ordinal='7' />
+            <column datatype='integer' name='Total Number of Dead and Missing' ordinal='8' />
+            <column datatype='integer' name='Number of Survivors' ordinal='9' />
+            <column datatype='integer' name='Number of Females' ordinal='10' />
+            <column datatype='integer' name='Number of Males' ordinal='11' />
+            <column datatype='integer' name='Number of Children' ordinal='12' />
+            <column datatype='string' name='Cause of Death' ordinal='13' />
+            <column datatype='string' name='Migration route' ordinal='14' />
+            <column datatype='string' name='Location of death' ordinal='15' />
+            <column datatype='string' name='Information Source' ordinal='16' />
+            <column datatype='string' name='Coordinates' ordinal='17' />
+            <column datatype='string' name='UNSD Geographical Grouping' ordinal='18' />
+          </columns>
+        </_.fcp.ObjectModelEncapsulateLegacy.false...relation>
+        <_.fcp.ObjectModelEncapsulateLegacy.true...relation connection='textscan.0loeenk1bgxu711fvxquk1eccmkx' name='Global Missing Migrants Dataset.csv' table='[Global Missing Migrants Dataset#csv]' type='table'>
+          <columns character-set='UTF-8' header='yes' locale='en_IN' separator=','>
+            <column datatype='string' name='Incident Type' ordinal='0' />
+            <column datatype='integer' name='Incident year' ordinal='1' />
+            <column datatype='string' name='Reported Month' ordinal='2' />
+            <column datatype='string' name='Region of Origin' ordinal='3' />
+            <column datatype='string' name='Region of Incident' ordinal='4' />
+            <column datatype='string' name='Country of Origin' ordinal='5' />
+            <column datatype='integer' name='Number of Dead' ordinal='6' />
+            <column datatype='integer' name='Minimum Estimated Number of Missing' ordinal='7' />
+            <column datatype='integer' name='Total Number of Dead and Missing' ordinal='8' />
+            <column datatype='integer' name='Number of Survivors' ordinal='9' />
+            <column datatype='integer' name='Number of Females' ordinal='10' />
+            <column datatype='integer' name='Number of Males' ordinal='11' />
+            <column datatype='integer' name='Number of Children' ordinal='12' />
+            <column datatype='string' name='Cause of Death' ordinal='13' />
+            <column datatype='string' name='Migration route' ordinal='14' />
+            <column datatype='string' name='Location of death' ordinal='15' />
+            <column datatype='string' name='Information Source' ordinal='16' />
+            <column datatype='string' name='Coordinates' ordinal='17' />
+            <column datatype='string' name='UNSD Geographical Grouping' ordinal='18' />
+          </columns>
+        </_.fcp.ObjectModelEncapsulateLegacy.true...relation>
+        <metadata-records>
+          <metadata-record class='capability'>
+            <remote-name />
+            <remote-type>0</remote-type>
+            <parent-name>[Global Missing Migrants Dataset.csv]</parent-name>
+            <remote-alias />
+            <aggregation>Count</aggregation>
+            <contains-null>true</contains-null>
+            <attributes>
+              <attribute datatype='string' name='character-set'>&quot;UTF-8&quot;</attribute>
+              <attribute datatype='string' name='collation'>&quot;en_GB&quot;</attribute>
+              <attribute datatype='string' name='currency'>&quot;₹&quot;</attribute>
+              <attribute datatype='string' name='field-delimiter'>&quot;,&quot;</attribute>
+              <attribute datatype='string' name='header-row'>&quot;true&quot;</attribute>
+              <attribute datatype='string' name='locale'>&quot;en_IN&quot;</attribute>
+              <attribute datatype='string' name='single-char'>&quot;&quot;</attribute>
+            </attributes>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Incident Type</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Incident Type]</local-name>
+            <parent-name>[Global Missing Migrants Dataset.csv]</parent-name>
+            <remote-alias>Incident Type</remote-alias>
+            <ordinal>0</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Global Missing Migrants Dataset.csv_2E8A417342D2469AAD529CAA609BBFCA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Incident year</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Incident year]</local-name>
+            <parent-name>[Global Missing Migrants Dataset.csv]</parent-name>
+            <remote-alias>Incident year</remote-alias>
+            <ordinal>1</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Global Missing Migrants Dataset.csv_2E8A417342D2469AAD529CAA609BBFCA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Reported Month</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Reported Month]</local-name>
+            <parent-name>[Global Missing Migrants Dataset.csv]</parent-name>
+            <remote-alias>Reported Month</remote-alias>
+            <ordinal>2</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Global Missing Migrants Dataset.csv_2E8A417342D2469AAD529CAA609BBFCA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Region of Origin</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Region of Origin]</local-name>
+            <parent-name>[Global Missing Migrants Dataset.csv]</parent-name>
+            <remote-alias>Region of Origin</remote-alias>
+            <ordinal>3</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Global Missing Migrants Dataset.csv_2E8A417342D2469AAD529CAA609BBFCA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Region of Incident</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Region of Incident]</local-name>
+            <parent-name>[Global Missing Migrants Dataset.csv]</parent-name>
+            <remote-alias>Region of Incident</remote-alias>
+            <ordinal>4</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Global Missing Migrants Dataset.csv_2E8A417342D2469AAD529CAA609BBFCA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Country of Origin</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Country of Origin]</local-name>
+            <parent-name>[Global Missing Migrants Dataset.csv]</parent-name>
+            <remote-alias>Country of Origin</remote-alias>
+            <ordinal>5</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Global Missing Migrants Dataset.csv_2E8A417342D2469AAD529CAA609BBFCA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Number of Dead</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Number of Dead]</local-name>
+            <parent-name>[Global Missing Migrants Dataset.csv]</parent-name>
+            <remote-alias>Number of Dead</remote-alias>
+            <ordinal>6</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Global Missing Migrants Dataset.csv_2E8A417342D2469AAD529CAA609BBFCA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Minimum Estimated Number of Missing</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Minimum Estimated Number of Missing]</local-name>
+            <parent-name>[Global Missing Migrants Dataset.csv]</parent-name>
+            <remote-alias>Minimum Estimated Number of Missing</remote-alias>
+            <ordinal>7</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Global Missing Migrants Dataset.csv_2E8A417342D2469AAD529CAA609BBFCA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Total Number of Dead and Missing</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Total Number of Dead and Missing]</local-name>
+            <parent-name>[Global Missing Migrants Dataset.csv]</parent-name>
+            <remote-alias>Total Number of Dead and Missing</remote-alias>
+            <ordinal>8</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Global Missing Migrants Dataset.csv_2E8A417342D2469AAD529CAA609BBFCA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Number of Survivors</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Number of Survivors]</local-name>
+            <parent-name>[Global Missing Migrants Dataset.csv]</parent-name>
+            <remote-alias>Number of Survivors</remote-alias>
+            <ordinal>9</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Global Missing Migrants Dataset.csv_2E8A417342D2469AAD529CAA609BBFCA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Number of Females</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Number of Females]</local-name>
+            <parent-name>[Global Missing Migrants Dataset.csv]</parent-name>
+            <remote-alias>Number of Females</remote-alias>
+            <ordinal>10</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Global Missing Migrants Dataset.csv_2E8A417342D2469AAD529CAA609BBFCA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Number of Males</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Number of Males]</local-name>
+            <parent-name>[Global Missing Migrants Dataset.csv]</parent-name>
+            <remote-alias>Number of Males</remote-alias>
+            <ordinal>11</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Global Missing Migrants Dataset.csv_2E8A417342D2469AAD529CAA609BBFCA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Number of Children</remote-name>
+            <remote-type>20</remote-type>
+            <local-name>[Number of Children]</local-name>
+            <parent-name>[Global Missing Migrants Dataset.csv]</parent-name>
+            <remote-alias>Number of Children</remote-alias>
+            <ordinal>12</ordinal>
+            <local-type>integer</local-type>
+            <aggregation>Sum</aggregation>
+            <contains-null>true</contains-null>
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Global Missing Migrants Dataset.csv_2E8A417342D2469AAD529CAA609BBFCA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Cause of Death</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Cause of Death]</local-name>
+            <parent-name>[Global Missing Migrants Dataset.csv]</parent-name>
+            <remote-alias>Cause of Death</remote-alias>
+            <ordinal>13</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Global Missing Migrants Dataset.csv_2E8A417342D2469AAD529CAA609BBFCA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Migration route</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Migration route]</local-name>
+            <parent-name>[Global Missing Migrants Dataset.csv]</parent-name>
+            <remote-alias>Migration route</remote-alias>
+            <ordinal>14</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Global Missing Migrants Dataset.csv_2E8A417342D2469AAD529CAA609BBFCA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Location of death</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Location of death]</local-name>
+            <parent-name>[Global Missing Migrants Dataset.csv]</parent-name>
+            <remote-alias>Location of death</remote-alias>
+            <ordinal>15</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Global Missing Migrants Dataset.csv_2E8A417342D2469AAD529CAA609BBFCA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Information Source</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Information Source]</local-name>
+            <parent-name>[Global Missing Migrants Dataset.csv]</parent-name>
+            <remote-alias>Information Source</remote-alias>
+            <ordinal>16</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Global Missing Migrants Dataset.csv_2E8A417342D2469AAD529CAA609BBFCA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>Coordinates</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[Coordinates]</local-name>
+            <parent-name>[Global Missing Migrants Dataset.csv]</parent-name>
+            <remote-alias>Coordinates</remote-alias>
+            <ordinal>17</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Global Missing Migrants Dataset.csv_2E8A417342D2469AAD529CAA609BBFCA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+          <metadata-record class='column'>
+            <remote-name>UNSD Geographical Grouping</remote-name>
+            <remote-type>129</remote-type>
+            <local-name>[UNSD Geographical Grouping]</local-name>
+            <parent-name>[Global Missing Migrants Dataset.csv]</parent-name>
+            <remote-alias>UNSD Geographical Grouping</remote-alias>
+            <ordinal>18</ordinal>
+            <local-type>string</local-type>
+            <aggregation>Count</aggregation>
+            <scale>1</scale>
+            <width>1073741823</width>
+            <contains-null>true</contains-null>
+            <collation flag='0' name='LEN_RGB' />
+            <_.fcp.ObjectModelEncapsulateLegacy.true...object-id>[Global Missing Migrants Dataset.csv_2E8A417342D2469AAD529CAA609BBFCA]</_.fcp.ObjectModelEncapsulateLegacy.true...object-id>
+          </metadata-record>
+        </metadata-records>
+      </connection>
+      <aliases enabled='yes' />
+      <column datatype='string' name='[Country of Origin]' role='dimension' semantic-role='[Country].[ISO3166_2]' type='nominal' />
+      <column datatype='integer' name='[Incident year]' role='dimension' type='quantitative' />
+      <_.fcp.ObjectModelTableType.true...column caption='Global Missing Migrants Dataset.csv' datatype='table' name='[__tableau_internal_object_id__].[Global Missing Migrants Dataset.csv_2E8A417342D2469AAD529CAA609BBFCA]' role='measure' type='quantitative' />
+      <layout _.fcp.SchemaViewerObjectModel.false...dim-percentage='0.5' _.fcp.SchemaViewerObjectModel.false...measure-percentage='0.4' dim-ordering='alphabetic' measure-ordering='alphabetic' show-structure='true' />
+      <semantic-values>
+        <semantic-value key='[Country].[Name]' value='&quot;India&quot;' />
+      </semantic-values>
+      <_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+        <objects>
+          <object caption='Global Missing Migrants Dataset.csv' id='Global Missing Migrants Dataset.csv_2E8A417342D2469AAD529CAA609BBFCA'>
+            <properties context=''>
+              <relation connection='textscan.0loeenk1bgxu711fvxquk1eccmkx' name='Global Missing Migrants Dataset.csv' table='[Global Missing Migrants Dataset#csv]' type='table'>
+                <columns character-set='UTF-8' header='yes' locale='en_IN' separator=','>
+                  <column datatype='string' name='Incident Type' ordinal='0' />
+                  <column datatype='integer' name='Incident year' ordinal='1' />
+                  <column datatype='string' name='Reported Month' ordinal='2' />
+                  <column datatype='string' name='Region of Origin' ordinal='3' />
+                  <column datatype='string' name='Region of Incident' ordinal='4' />
+                  <column datatype='string' name='Country of Origin' ordinal='5' />
+                  <column datatype='integer' name='Number of Dead' ordinal='6' />
+                  <column datatype='integer' name='Minimum Estimated Number of Missing' ordinal='7' />
+                  <column datatype='integer' name='Total Number of Dead and Missing' ordinal='8' />
+                  <column datatype='integer' name='Number of Survivors' ordinal='9' />
+                  <column datatype='integer' name='Number of Females' ordinal='10' />
+                  <column datatype='integer' name='Number of Males' ordinal='11' />
+                  <column datatype='integer' name='Number of Children' ordinal='12' />
+                  <column datatype='string' name='Cause of Death' ordinal='13' />
+                  <column datatype='string' name='Migration route' ordinal='14' />
+                  <column datatype='string' name='Location of death' ordinal='15' />
+                  <column datatype='string' name='Information Source' ordinal='16' />
+                  <column datatype='string' name='Coordinates' ordinal='17' />
+                  <column datatype='string' name='UNSD Geographical Grouping' ordinal='18' />
+                </columns>
+              </relation>
+            </properties>
+          </object>
+        </objects>
+      </_.fcp.ObjectModelEncapsulateLegacy.true...object-graph>
+    </datasource>
+  </datasources>
+  <worksheets>
+    <worksheet name='Sheet 1'>
+      <table>
+        <view>
+          <datasources />
+          <aggregation value='true' />
+        </view>
+        <style />
+        <panes>
+          <pane selection-relaxation-option='selection-relaxation-allow'>
+            <view>
+              <breakdown value='auto' />
+            </view>
+            <mark class='Automatic' />
+          </pane>
+        </panes>
+        <rows />
+        <cols />
+      </table>
+      <simple-id uuid='{FD1A554D-C78F-44A6-A028-ED9737F87777}' />
+    </worksheet>
+  </worksheets>
+  <windows saved-dpi-scale-factor='1.5' source-height='44'>
+    <window class='worksheet' maximized='true' name='Sheet 1'>
+      <cards>
+        <edge name='left'>
+          <strip size='160'>
+            <card type='pages' />
+            <card type='filters' />
+            <card type='marks' />
+          </strip>
+        </edge>
+        <edge name='top'>
+          <strip size='2147483647'>
+            <card type='columns' />
+          </strip>
+          <strip size='2147483647'>
+            <card type='rows' />
+          </strip>
+          <strip size='30'>
+            <card type='title' />
+          </strip>
+        </edge>
+      </cards>
+      <simple-id uuid='{6FF7BAFA-71B3-4379-8500-C52B07A70851}' />
+    </window>
+  </windows>
+  <thumbnails>
+    <thumbnail height='192' name='Sheet 1' width='192'>
+      iVBORw0KGgoAAAANSUhEUgAAAMAAAADACAYAAABS3GwHAAAACXBIWXMAABYlAAAWJQFJUiTw
+      AAACFUlEQVR4nO3TMQEAIAzAMMC/5yFjRxMFfXpnZg5Eve0A2GQA0gxAmgFIMwBpBiDNAKQZ
+      gDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFI
+      MwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQD
+      kGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBp
+      BiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA
+      0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDN
+      AKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxA
+      mgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZ
+      gDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFI
+      MwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKQZgDQDkGYA0gxAmgFIMwBpBiDNAKR9Y+0F
+      fBUOM1sAAAAASUVORK5CYII=
+    </thumbnail>
+  </thumbnails>
+</workbook>

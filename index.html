@@ -1,38 +1,38 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <title>Missing Migrants Visualization</title>
-        <meta name="description" content="">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <link rel="stylesheet" href="">
-        <style>
-            .full-width {
-                width: 100%;
-            }
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>World Map with D3.js</title>
+	<style>
+    /* Add your custom styles here */
+    body {
+		margin: 0;
+		padding: 0;
+    }
 
-            .half-width {
-                width: 40%;
-            }
-        </style>
-    </head>
-    <body>
-        <h2 style="margin-left: 45%;">Missing Migrants</h2>
-        <div class="full-width" style="justify-content: space-between;">
-            <img src="assets/year selecter.png" class="half-width" alt="Year filter to constrain the reports related to specified year">
-            <img src="assets/other filters placeholder.png" class="half-width" alt="Some more filters come here">
-        </div>
-        <h2>Map displaying incident count and migrant routes:</h2>
-        <img src="assets/migrant routes.webp" class="full-width" alt="World map displaying migrant routes and reports of missing migrants">
-        <h2> Fatalities of causes in the selected time span and region:</h2>
-        <div class="full-width" style="justify-content: space-between;">
-            <img src="assets/male,female,children share.png" style="width:20%" alt="Share of Males, Females and Children victims">
-            <img src="assets/Fatalities over months.png" style="width: 40%;" alt="Area chart of Fatalities over months">
-        </div>
-        <h2>Sanke chart showing migrants trying to migrate from src country to destination country</h2>
-        <img src="assets/sanke chart of migrants.webp"  alt="Sanke chart showing migrants travelling among countries">
-        <p>Data Source: <a href="https://missingmigrants.iom.int/downloads" target="_blank">International Organization of Migration</a></p>
-        <!-- <script src="" async defer></script> -->
-    </body>
+    #map-container {
+		width: 100vw;
+		height: 100vh;
+    }
+    /* Add your custom styles here */
+    .land {
+		fill: #ccc; /* Fill color for countries */
+		stroke: #fff; /* Border color for countries */
+		stroke-width: 1; /* Border width for countries */
+    }
+    .incident-point {
+        fill: red; /* Point color */
+    }
+  </style>
+</head>
+<body>
+  <div id="map-container"></div>
+  <!-- Include TopoJSON -->
+  <script src="https://d3js.org/topojson.v3.min.js"></script>
+  <!-- Include D3.js -->
+  <script src="https://d3js.org/d3.v5.min.js"></script>
+  <!-- Include your JavaScript file -->
+  <script src="visualization-script.js"></script>
+</body>
 </html>
