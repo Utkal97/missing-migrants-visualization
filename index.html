@@ -5,34 +5,40 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>World Map with D3.js</title>
 	<style>
-    /* Add your custom styles here */
-    body {
-		margin: 0;
-		padding: 0;
-    }
+		/* Add your custom styles here */
+		body {
+			margin: 0;
+			padding: 0;
+		}
 
-    #map-container {
-		width: 100vw;
-		height: 100vh;
-    }
-    /* Add your custom styles here */
-    .land {
-		fill: #ccc; /* Fill color for countries */
-		stroke: #fff; /* Border color for countries */
-		stroke-width: 1; /* Border width for countries */
-    }
-    .incident-point {
-        fill: red; /* Point color */
-    }
-  </style>
+		#map-container {
+			width: 100vw;
+			height: 100vh;
+		}
+		/* Add your custom styles here */
+		.land {
+			fill: #ccc; /* Fill color for countries */
+			stroke: #fff; /* Border color for countries */
+			stroke-width: 1; /* Border width for countries */
+		}
+		.incident-point {
+			fill: red; /* Point color */
+		}
+  	</style>
 </head>
 <body>
-  <div id="map-container"></div>
-  <!-- Include TopoJSON -->
-  <script src="https://d3js.org/topojson.v3.min.js"></script>
-  <!-- Include D3.js -->
-  <script src="https://d3js.org/d3.v5.min.js"></script>
-  <!-- Include your JavaScript file -->
-  <script src="visualization-script.js"></script>
+    <div id="map-container"></div>
+    <!-- Include TopoJSON -->
+    <script src="https://d3js.org/topojson.v3.min.js"></script>
+    <!-- Include D3.js -->
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+    <!-- Include JavaScript files -->
+    <script src="scripts/preprocessing.js"></script>
+    <script src="scripts/world-map.js"></script>
+    <script src="scripts/pie-chart.js"></script>
+    <script src="scripts/sanke-chart.js"></script>
+    <script src="scripts/area-chart.js"></script>
+    <script src="scripts/visualization.js"></script>
 </body>
 </html>
