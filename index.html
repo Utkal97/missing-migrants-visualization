@@ -11,7 +11,7 @@
 			padding: 0;
 		}
 
-		#map-container {
+		#proportional-symbol-map {
 			width: 100vw;
 			height: 100vh;
 		}
@@ -25,19 +25,28 @@
 			fill: red; /* Point color */
 		}
   	</style>
+	
+	<!-- Include D3.js -->
+	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<!-- Include TopoJSON -->
+	<script src="https://d3js.org/topojson.v3.min.js"></script>
+	<!-- <script src="https://d3js.org/d3-sankey.v0.12.min.js"></script> -->
+	<script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/sankey.js"></script>
 </head>
 <body>
-    <div id="map-container"></div>
-    <!-- Include TopoJSON -->
-    <script src="https://d3js.org/topojson.v3.min.js"></script>
-    <!-- Include D3.js -->
-    <script src="https://d3js.org/d3.v5.min.js"></script>
+	<div style="display: inline-block;">
+		<div id="proportional-symbol-map"></div>
+		<div id="sankey-chart"></div>
+	</div>
+	<div id="pie-chart"></div>
+	<div id="area-chart"></div>
+
 
     <!-- Include JavaScript files -->
     <script src="scripts/preprocessing.js"></script>
-    <script src="scripts/world-map.js"></script>
+    <script src="scripts/proportional-symbol-map.js"></script>
+    <script src="scripts/sankey-chart.js"></script>
     <script src="scripts/pie-chart.js"></script>
-    <script src="scripts/sanke-chart.js"></script>
     <script src="scripts/area-chart.js"></script>
     <script src="scripts/visualization.js"></script>
 </body>
