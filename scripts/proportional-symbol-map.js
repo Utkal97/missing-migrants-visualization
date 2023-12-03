@@ -42,7 +42,8 @@ function renderProportionalSymbolMap(csvData) {
             .attr('r', region => region.fatalityCount*0.001)
             .attr('fill', 'red')
             .on('click', region => {
-                renderSankeyChart(csvData, region.region);
+                renderAreaChart(csvData, region.region);
+                renderPieChart(csvData, region.region);
             })
             .on('hover', region => {
                 

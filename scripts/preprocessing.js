@@ -166,9 +166,54 @@ function processDataForSankeyChart(data) {
 /**
  * Processes the given CSV data and applies filter to get the required records to be shown on Area Chart
  * @param {Object[]} data - CSV File data that contains data of missing migrants
+ * @param {string} region - (optional) If provided, the result data will only contain incidents of that region
  */
-function processDataForAreaChart(data) {
+function processDataForAreaChart(data, region) {
+	if(!data.length)
+		return [];
 
+	// Sample data with only years
+	// const data = [
+	// 	{ year: 2021, category1: 10, category2: 20, category3: 15 },
+	// 	{ year: 2022, category1: 15, category2: 25, category3: 20 },
+	// 	{ year: 2023, category1: 9, category2: 30, category3: 18}]
+	let filteredData = [];
+
+	if(region)
+		for(const row of data)
+			if(row["Region of Incident"] == region)
+				filteredData.push(row);
+	else
+		filteredData = data;
+
+	const fatalities = {}, causes = new Set();
+	for(const row of data) {
+		const year = row['Incident year'],
+			causeOfDeath = row['Cause of Death'],
+			count = !isNaN(row['Total Number of Dead and Missing']) ? 
+				Number(row['Total Number of Dead and Missing']) : 0;
+
+		if(!year)
+			continue;
+
+		if(!fatalities[year]) 
+			fatalities[year] = {};
+		if(!fatalities[year][causeOfDeath])
+			fatalities[year][causeOfDeath] = 0;
+
+		fatalities[year][causeOfDeath]+= count;
+		causes.add(causeOfDeath);
+	}
+
+	const processedData = [];
+	for(const year in fatalities) {
+		processedData.push({
+			year: Number(year),
+			...fatalities[year]
+		});
+	}
+
+	return {data: processedData, categories: [...causes]};
 }
 
 /**
