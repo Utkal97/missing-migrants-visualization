@@ -164,11 +164,11 @@ function processDataForSankeyChart(data) {
 }
 
 /**
- * Processes the given CSV data and applies filter to get the required records to be shown on Area Chart
+ * Processes the given CSV data and applies filter to get the required records to be shown on Stacked Bar Chart
  * @param {Object[]} data - CSV File data that contains data of missing migrants
  * @param {string} region - (optional) If provided, the result data will only contain incidents of that region
  */
-function processDataForAreaChart(data, region) {
+function processDataForStackedBarChart(data, region) {
 	if(!data.length)
 		return [];
 
@@ -180,20 +180,20 @@ function processDataForAreaChart(data, region) {
 	let filteredData = [];
 
 	if(region)
-		for(const row of data)
+		for(const row of data) {
 			if(row["Region of Incident"] == region)
 				filteredData.push(row);
+		}
 	else
 		filteredData = data;
-
 	const fatalities = {}, causes = new Set();
-	for(const row of data) {
+	for(const row of filteredData) {
 		const year = row['Incident year'],
 			causeOfDeath = row['Cause of Death'],
 			count = !isNaN(row['Total Number of Dead and Missing']) ? 
 				Number(row['Total Number of Dead and Missing']) : 0;
 
-		if(!year)
+		if(!year && !extractValidCoordinates(row))
 			continue;
 
 		if(!fatalities[year]) 
@@ -213,13 +213,61 @@ function processDataForAreaChart(data, region) {
 		});
 	}
 
-	return {data: processedData, categories: [...causes]};
+	return processedData;
 }
 
 /**
  * Processes the given CSV data and applies filter to get the required records to be shown on Pie Chart
  * @param {Object[]} data - CSV File data that contains data of missing migrants
+ * @param {Object} filter - A filtering object that contains queries for filtering
  */
-function processDataForPieChart(data) {
+function processDataForPieChart(data, filter = null) {
+	if(!data.length)
+		return [];
 
+	// Sample Output Data
+	// const data = [
+	//	{gender: Male, percent: 50},
+	//	{gender: Female, percent: 30},
+	//	{gender: Child, percent: 20}	
+	// ]
+	
+	let filteredData = [];
+
+	for(const incident of data) {
+		const region = filter && filter.region ? filter.region : null,
+			causeOfDeath = filter && filter.causeOfDeath ? filter.causeOfDeath : null,
+			year = filter && filter.year ? filter.year : null;
+
+		if(!extractValidCoordinates(incident))
+			continue;
+		if(region && incident["Region of Incident"] != region)
+			continue;
+		if(causeOfDeath && incident["Cause of Death"] != causeOfDeath)
+			continue;
+		if(year && incident["Year"] != year)
+			continue;
+		
+		filteredData.push(incident);
+	}
+
+	const genderData = {
+		Males: 0,
+		Females: 0,
+		Children: 0
+	};
+
+	for(const incident of filteredData) {
+		genderData.Males += !isNaN(incident["Number of Males"]) ? Number(incident["Number of Males"]) : 0;
+		genderData.Females += !isNaN(incident["Number of Females"]) ? Number(incident["Number of Females"]) : 0;
+		genderData.Children += !isNaN(incident["Number of Children"]) ? Number(incident["Number of Children"]) : 0;
+	}
+
+	const total = genderData.Males + genderData.Females + genderData.Children;
+
+	return [
+		{gender: "Males", fatalityCount: total > 0 ? 100*genderData["Males"]/total : 0},
+		{gender: "Females", fatalityCount: total > 0 ? 100*genderData["Females"]/total : 0},
+		{gender: "Children", fatalityCount: total > 0 ? 100*genderData["Children"]/total : 0}
+	];
 }

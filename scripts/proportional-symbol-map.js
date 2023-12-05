@@ -3,7 +3,7 @@
  * @param {Object[]} csvData 
  * @returns 
  */
-function renderProportionalSymbolMap(csvData) {
+function renderProportionalSymbolMap(csvData, stackedBarChart, pieChart) {
 
 	//Pre-process the dataset
 	const regionData = processDataForProportionalSymbolMap(csvData);
@@ -42,8 +42,12 @@ function renderProportionalSymbolMap(csvData) {
             .attr('r', region => region.fatalityCount*0.001)
             .attr('fill', 'red')
             .on('click', region => {
-                renderAreaChart(csvData, region.region);
-                renderPieChart(csvData, region.region);
+                stackedBarChart.clear();
+                pieChart.clear();
+                stackedBarChart = new StackedBarChart(csvData, region.region);
+                stackedBarChart.draw();
+                pieChart = new PieChart(csvData, {region: region.region})
+                pieChart.draw()
             })
             .on('hover', region => {
                 

@@ -28,23 +28,19 @@
 	
 	<!-- Include D3.js -->
 	<script src="https://d3js.org/d3.v5.min.js"></script>
+	<script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/sankey.js"></script>
 	<!-- Include TopoJSON -->
 	<script src="https://d3js.org/topojson.v3.min.js"></script>
-	<!-- <script src="https://d3js.org/d3-sankey.v0.12.min.js"></script> -->
-	<script src="https://cdn.jsdelivr.net/gh/holtzy/D3-graph-gallery@master/LIB/sankey.js"></script>
 </head>
 <body>
-	<div style="display: inline-block;">
-		<div id="proportional-symbol-map"></div>
-		<div id="sankey-chart"></div>
-	</div>
-	<div id="pie-chart"></div>
-	<div id="area-chart"></div>
-
+	<svg width="800" height="400" id="proportional-symbol-map"></svg>
+	<div  id="sankey-chart"></div>
+	<svg width="800" height="400" id="stacked-bar-chart"></svg>
+	<svg id="pie-chart"></svg>
 
     <!-- Include JavaScript files -->
     <script src="scripts/preprocessing.js"></script>
-    <script src="scripts/area-chart.js"></script>
+    <script src="scripts/stacked-bar-chart.js"></script>
     <script src="scripts/pie-chart.js"></script>
     <script src="scripts/sankey-chart.js"></script>
     <script src="scripts/proportional-symbol-map.js"></script>
