@@ -24,6 +24,9 @@ class StackedBarChart {
 
 	this.color = d3.scaleOrdinal()
 		.range(d3.schemeCategory10);
+    
+	// Define a variable to store the currently hovered bar
+	this.hoveredBar = null;
 
 	this.stack = d3.stack()
 		.keys(this.categories);
@@ -35,18 +38,33 @@ class StackedBarChart {
 	}
 
 	draw() {
+        const chart = this;
 
 		this.g.selectAll("g")
 			.data(this.stackedData)
 			.enter().append("g")
-			.attr("fill", d => this.color(d.key))
+			.attr("fill", d => chart.color(d.key))
 			.selectAll("rect")
 			.data(d => d)
 			.enter().append("rect")
-			.attr("x", d => this.x(d.data.year))
-			.attr("y", d => this.y(d[1]))
-			.attr("height", d => this.y(d[0]) - this.y(d[1]))
-			.attr("width", this.x.bandwidth());
+			.attr("x", d => chart.x(d.data.year))
+			.attr("y", d => chart.y(d[1]))
+			.attr("height", d => chart.y(d[0]) - chart.y(d[1]))
+			.attr("width", chart.x.bandwidth())
+			.on("mouseover", function (event, d) {
+                // Highlight the current bar on mouseover with transition
+                d3.select(this)
+                    .transition()
+                    .duration(200) // Adjust the duration as needed
+                    .attr("fill", "orange"); // Change the color for highlighting
+            })
+            .on("mouseout", function (event, d) {
+                // Restore the color on mouseout with transition
+                d3.select(this)
+                    .transition()
+                    .duration(200) // Adjust the duration as needed
+                    .attr("fill", d => chart.color(d3.select(this.parentNode).datum().key));
+			});
 
 		this.g.append("g")
 			.attr("transform", `translate(0,${this.innerHeight})`)
