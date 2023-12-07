@@ -18,8 +18,8 @@ function renderProportionalSymbolMap(csvData, stackedBarChart, pieChart) {
         .attr('height', height);
 
     // Define projection
-    const projection = d3.geoMercator().scale(100, 70);
-
+    const projection = d3.geoMercator().scale(150,30)
+    .translate([width / 2, height / 2]);
     // Create path generator
     const path = d3.geoPath(projection);
 

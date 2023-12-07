@@ -1,7 +1,7 @@
 function renderSankeyChart(csvData) {
 
     const width = 500;
-    const height = 500;
+    const height = 400;
 
     const data = processDataForSankeyChart(csvData);
 
@@ -21,7 +21,10 @@ function renderSankeyChart(csvData) {
 		.nodes(data.nodes)
 		.links(data.links)
 		.layout(1);
-
+    
+	// Define a color scale for links
+	const linkColor = d3.scaleOrdinal(d3.schemeCategory10);
+	
     // Draw links
     const link = svg.append("g")
 		.selectAll(".link")
@@ -30,12 +33,33 @@ function renderSankeyChart(csvData) {
 		.append("path")
         .attr("class", "link")
         .attr("d", sankey.link())
-        .attr("stroke", "#000")
+        .attr("stroke", (d, i) => linkColor(i))
 		.attr("stroke-opacity", 0.7)
         .style("stroke-width", function(d) { return Math.max(1, d.dy); })
 		.sort(function(a,b) { return b.dy - a.dy})
-		.attr("fill", "none");
+		.attr("fill", "none")
+		.on("mouseover", function(d) {
+			// Add your mouseover logic for links here
+			// You can access the data of the link using 'd'
+			d3.select(this)
+				.transition()
+				.duration(200)
+				.attr("stroke", "black")
+				.attr("stroke-width", 2);
+		})
 
+		.on("mouseout", function(d) {
+			// Add your mouseout logic for links here
+			d3.select(this)
+				.transition()
+				.duration(200)
+				.attr("stroke", (d, i) => linkColor(i))
+				.attr("stroke-width", function(d) { return Math.max(1, d.dy); });
+		});
+
+	// Define a color scale for nodes
+    const nodeColor = d3.scaleOrdinal(d3.schemeCategory10);
+		
     // Draw nodes
     const node = svg.append("g")
 		.selectAll(".node")
@@ -47,7 +71,26 @@ function renderSankeyChart(csvData) {
         .subject(function(d) { return d; })
         .on("start", function() { this.parentNode.appendChild(this); })
         .on("drag", dragmove))
-        .attr("fill", "#2196F3");
+        .attr("fill", (d, i) => nodeColor(i))
+		.on("mouseover", function(d) {
+			// Add your mouseover logic for nodes here
+			// You can access the data of the node using 'd'
+			d3.select(this)
+				.select("rect")
+				.transition()
+				.duration(200)
+				.attr("stroke", "black")
+				.attr("stroke-width", 2);
+		})
+		.on("mouseout", function(d) {
+			// Add your mouseout logic for nodes here
+			d3.select(this)
+				.select("rect")
+				.transition()
+				.duration(200)
+				.attr("stroke", "none");
+		});
+	
     
 		
 	node
@@ -67,11 +110,22 @@ function renderSankeyChart(csvData) {
 			.attr("text-anchor", "end")
 			.attr("transform", null)
 			.style("font-size", "15px")
+			.style("fill", "black")
+			.style("font-weight", "bold")
 			.text(function(d) { if(d.value) return d.name; return null;})
 			.filter(function(d) { return d.x < width / 2; })
 			.attr("x", 6 + sankey.nodeWidth())
 			.attr("text-anchor", "start");
 
+	// Add a title at the bottom
+	svg.append("text")
+	   .attr("x", width / 2)
+       .attr("y", height + 30)  // Adjust the position as needed
+       .attr("text-anchor", "middle")
+       .style("font-size", "16px")
+       .style("font-weight", "bold")
+       .text("Sankey Chart for Migration Movements");
+			
 	// the function for moving the nodes
 	function dragmove(d) {
 		d3.select(this)
