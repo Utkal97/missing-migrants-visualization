@@ -1,7 +1,7 @@
-function renderSankeyChart(csvData) {
+function renderSankeyChart(csvData, stackedBarChart=null, pieChart=null) {
 
     const width = 500;
-    const height = 400;
+    const height = 500;
 
     const data = processDataForSankeyChart(csvData);
 
@@ -46,6 +46,12 @@ function renderSankeyChart(csvData) {
 				.duration(200)
 				.attr("stroke", "black")
 				.attr("stroke-width", 2);
+				// stackedBarChart.clear();
+                // pieChart.clear();
+                // stackedBarChart = new StackedBarChart(csvData, d.target);
+                // stackedBarChart.draw();
+                // pieChart = new PieChart(csvData, {region: d.target})
+                // pieChart.draw()
 		})
 
 		.on("mouseout", function(d) {
@@ -123,14 +129,14 @@ function renderSankeyChart(csvData) {
 			
 	// the function for moving the nodes
 	function dragmove(d) {
-		d3.select(this)
-		.attr("transform",
-				"translate("
-				+ d.x + ","
-				+ (d.y = Math.max(
-					0, Math.min(height - d.dy, d3.event.y))
-					) + ")");
-		sankey.relayout();
-		link.attr("d", sankey.link() );
+		// d3.select(this)
+		// .attr("transform",
+		// 		"translate("
+		// 		+ d.x + ","
+		// 		+ (d.y = Math.max(
+		// 			0, Math.min(height - d.dy, d3.event.y))
+		// 			) + ")");
+		// sankey.relayout();
+		// link.attr("d", sankey.link() );
 	}
 }

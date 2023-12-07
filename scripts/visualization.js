@@ -14,7 +14,7 @@ d3.csv("Global Missing Migrants Dataset.csv").then((data) => {
 	renderProportionalSymbolMap(data, stackedBarChart, pieChart);
 
 	//Render Sanke Chart
-	renderSankeyChart(data);
+	renderSankeyChart(data, stackedBarChart, pieChart);
 
 	return;
 })

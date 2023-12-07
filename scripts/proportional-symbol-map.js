@@ -18,8 +18,7 @@ function renderProportionalSymbolMap(csvData, stackedBarChart, pieChart) {
         .attr('height', height);
 
     // Define projection
-    const projection = d3.geoMercator().scale(150,30)
-    .translate([width / 2, height / 2]);
+    const projection = d3.geoMercator();
     // Create path generator
     const path = d3.geoPath(projection);
 
@@ -39,7 +38,13 @@ function renderProportionalSymbolMap(csvData, stackedBarChart, pieChart) {
             .enter().append('circle')
             .attr('cx', region => projection([region.coordinates[1], region.coordinates[0]])[0])
             .attr('cy', region => projection([region.coordinates[1], region.coordinates[0]])[1])
-            .attr('r', region => region.fatalityCount*0.001)
+            .attr('r', region => {
+                const radius = region.fatalityCount*0.001;
+                if(radius > 5)
+                    return radius;
+                else
+                    return region.fatalityCount*0.005;
+            })
             .attr('fill', 'red')
             .on('click', region => {
                 stackedBarChart.clear();
@@ -49,8 +54,21 @@ function renderProportionalSymbolMap(csvData, stackedBarChart, pieChart) {
                 pieChart = new PieChart(csvData, {region: region.region})
                 pieChart.draw()
             })
-            .on('hover', region => {
-                
+            .on('mouseover', region => {
+                stackedBarChart.clear();
+                pieChart.clear();
+                stackedBarChart = new StackedBarChart(csvData, region.region);
+                stackedBarChart.draw();
+                pieChart = new PieChart(csvData, {region: region.region})
+                pieChart.draw()
+            })
+            .on('mouseout', region => {
+                stackedBarChart.clear();
+                pieChart.clear();
+                stackedBarChart = new StackedBarChart(csvData);
+                stackedBarChart.draw();
+                pieChart = new PieChart(csvData)
+                pieChart.draw()
             })
             .attr('opacity', 0.8);
     });

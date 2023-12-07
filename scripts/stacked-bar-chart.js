@@ -9,6 +9,8 @@ class StackedBarChart {
 			.attr("width", this.width)
 			.attr("height", this.height);
 
+		this.legendSvg = d3.select("#bar-chart-legend");
+
 		this.margin = {top: 20, right: 0, bottom: 30, left: 200};
 		
 		this.innerWidth = this.width - this.margin.left - this.margin.right;
@@ -22,19 +24,19 @@ class StackedBarChart {
 			.range([this.innerHeight, 0])
 			.domain([0, d3.max(this.stackedBarChartData, d => d3.sum(this.categories, c => d[c]))]);
 
-	this.color = d3.scaleOrdinal()
-		.range(d3.schemeCategory10);
+		this.color = d3.scaleOrdinal()
+			.range(d3.schemeCategory10);
     
-	// Define a variable to store the currently hovered bar
-	this.hoveredBar = null;
+		// Define a variable to store the currently hovered bar
+		this.hoveredBar = null;
 
-	this.stack = d3.stack()
-		.keys(this.categories);
+		this.stack = d3.stack()
+			.keys(this.categories);
 
-	this.stackedData = this.stack(this.stackedBarChartData);
+		this.stackedData = this.stack(this.stackedBarChartData);
 
-	this.g = this.svg.append("g")
-		.attr("transform", `translate(${this.margin.left},${this.margin.top})`);
+		this.g = this.svg.append("g")
+			.attr("transform", `translate(${this.margin.left},${this.margin.top})`);
 	}
 
 	draw() {
@@ -69,6 +71,27 @@ class StackedBarChart {
                     .attr("fill", d => chart.color(d3.select(this.parentNode).datum().key))
 					.attr("stroke", "none");
 			});
+		
+		const legend = this.legendSvg.append("g")
+            .attr("class", "legend");
+
+		const legendItems = legend.selectAll(".legend-item")
+            .data(this.categories)
+            .enter().append("g")
+            .attr("class", "legend-item")
+            .attr("transform", (d, i) => `translate(0, ${i * 15})`); // Adjust spacing as needed
+
+        legendItems.append("rect")
+            .attr("width", 10)
+            .attr("height", 10)
+            .attr("fill", d => chart.color(d));
+
+        legendItems.append("text")
+            .attr("x", 15)
+            .attr("y", 4)
+            .attr("dy", ".35em")
+            .style("text-anchor", "start")
+            .text(d => d);
 
 		this.g.append("g")
 			.attr("transform", `translate(0,${this.innerHeight})`)
@@ -82,7 +105,7 @@ class StackedBarChart {
 			.attr("y", 6)
 			.attr("dy", "0.71em")
 			.attr("text-anchor", "end")
-			.text("Value");
+			.text("Fatalities");
 
 		this.svg.append("text")
 			.attr("transform", `translate(${this.width / 2},${this.height - this.margin.bottom + 30})`)
@@ -92,5 +115,6 @@ class StackedBarChart {
 
 	clear() {
 		this.g.selectAll("g").remove(); // Clear previous chart elements
+		this.legendSvg.select(".legend").remove();
 	}
 }
