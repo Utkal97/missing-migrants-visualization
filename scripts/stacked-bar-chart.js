@@ -9,7 +9,7 @@ class StackedBarChart {
 			.attr("width", this.width)
 			.attr("height", this.height);
 
-		this.margin = {top: 20, right: 20, bottom: 30, left: 40};
+		this.margin = {top: 20, right: 0, bottom: 30, left: 200};
 		
 		this.innerWidth = this.width - this.margin.left - this.margin.right;
 		this.innerHeight = this.height - this.margin.top - this.margin.bottom;

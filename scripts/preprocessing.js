@@ -94,49 +94,72 @@ function processDataForSankeyChart(data) {
 	if(!data.length)
 		return [];
 
-	const idOfRegion = {}, linksMap = {}, nodes = [], idToName = {};
-	let id = 0;
+	const sourceIdOfRegion = {}, targetIdOfRegion = {}, linksMap = {}, nodes = [], idToName = {};
+	let id = 1;
 
 	for(const row of data) {
-		const source = row['Region of Origin'], target = row['Region of Incident'],
+		
+		const source = row['Region of Origin'], target = row['Region of Incident'], 
 			fatalityCount = row['Total Number of Dead and Missing'];
-
-		if( !extractValidCoordinates(row) && 
-			(!source || source=="Unknown" || source=="") &&
-			(!target || target=="Unknown" || target==""))
+		
+		if( !extractValidCoordinates(row) || 
+			(!source || source=="Unknown" || source=="") ||
+			(!target || target=="Unknown" || target=="") ||
+			isNaN(fatalityCount) || source == target)
 			continue;
 
+		else if(sourceIdOfRegion[source])
+			continue;
 
-		if(!idOfRegion[source]) {
+		sourceIdOfRegion[source] = id;
+		nodes.push({
+			name: source,
+			node: id,
+			type: "Src"
+		});
+		idToName[id] = source;
+		id++;
+	}
 
-			idOfRegion[source] = id;
-			nodes.push({
-				name: source,
-				node: id
-			});
-			idToName[id] = source;
-			id++;
-		}
+	for(const row of data) {
 
-		if(!idOfRegion[target]) {
+		const source = row['Region of Origin'], target = row['Region of Incident'], 
+			fatalityCount = row['Total Number of Dead and Missing'];
+		
+		if( !extractValidCoordinates(row) || 
+			(!source || source=="Unknown" || source=="") ||
+			(!target || target=="Unknown" || target=="") ||
+			isNaN(fatalityCount) || source == target)
+			continue;
 
-			idOfRegion[target] = id;
-			nodes.push({
-				name: target,
-				node: id
-			});
-			idToName[id] = target;
-			id++;
-		}
+		else if(targetIdOfRegion[target])
+			continue;
 
-		if( !isNaN(fatalityCount) && source != target ) {
+		targetIdOfRegion[target] = id;
+		nodes.push({
+			name: target,
+			node: id,
+			type: "Tgt"
+		});
+		idToName[id] = target;
+		id++;
+	}
 
-			const link = `${idOfRegion[source]}_${idOfRegion[target]}`;
-			if(!linksMap[link])
+	for(const row of data) {
+		const source = row['Region of Origin'], target = row['Region of Incident'], 
+			fatalityCount = row['Total Number of Dead and Missing'];
+		
+		if( !extractValidCoordinates(row) || 
+			(!source || source=="Unknown" || source=="") ||
+			(!target || target=="Unknown" || target=="") ||
+			isNaN(fatalityCount) || source == target)
+			continue;
+		
+		const link = `${sourceIdOfRegion[source]}_${targetIdOfRegion[target]}`;
+		if(!linksMap[link])
 				linksMap[link] = Number(fatalityCount);
 			else
 				linksMap[link] += Number(fatalityCount);
-		}
 	}
 	
 	const links = [];
@@ -148,8 +171,8 @@ function processDataForSankeyChart(data) {
 			continue;
 
 		links.push({
-			source: Number(source), 
-			target: Number(target), 
+			source: Number(source)-1, 
+			target: Number(target)-1, 
 			value: linksMap[link]
 		});
 	}

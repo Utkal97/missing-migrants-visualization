@@ -9,7 +9,7 @@ function renderProportionalSymbolMap(csvData, stackedBarChart, pieChart) {
 	const regionData = processDataForProportionalSymbolMap(csvData);
 
     // Set up the map container
-    const width = window.innerWidth * 0.7;
+    const width = window.innerWidth * 0.55;
     const height = window.innerHeight * 0.7;
 
     const svg = d3.select('#proportional-symbol-map')

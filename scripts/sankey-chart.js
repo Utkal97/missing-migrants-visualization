@@ -34,7 +34,7 @@ function renderSankeyChart(csvData) {
         .attr("class", "link")
         .attr("d", sankey.link())
         .attr("stroke", (d, i) => linkColor(i))
-		.attr("stroke-opacity", 0.7)
+		.attr("stroke-opacity", 0.4)
         .style("stroke-width", function(d) { return Math.max(1, d.dy); })
 		.sort(function(a,b) { return b.dy - a.dy})
 		.attr("fill", "none")
@@ -78,9 +78,7 @@ function renderSankeyChart(csvData) {
 			d3.select(this)
 				.select("rect")
 				.transition()
-				.duration(200)
-				.attr("stroke", "black")
-				.attr("stroke-width", 2);
+				.duration(200);
 		})
 		.on("mouseout", function(d) {
 			// Add your mouseout logic for nodes here
@@ -90,14 +88,11 @@ function renderSankeyChart(csvData) {
 				.duration(200)
 				.attr("stroke", "none");
 		});
-	
-    
 		
 	node
 		.append("rect")
 		  .attr("height", function(d) { return d.dy; })
 		  .attr("width", sankey.nodeWidth())
-		// Add hover text
 		.append("title")
 		  .text(function(d) { return d.name + "\n" + "There were " + d.value + " casualities in this path"; });
 

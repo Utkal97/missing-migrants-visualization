@@ -5,7 +5,7 @@ class PieChart {
             this.data = processDataForPieChart(csvdata, filter);
             this.width = 400;
             this.height = 400;
-            this.radius = Math.min(this.width, this.height) / 2;
+            this.radius = Math.min(this.width, this.height) / 2.7;
         
             this.color = d3.scaleOrdinal().range(['#ff5733', '#ffa833', '#33ff57', '#335eff', '#a833ff']);
     
@@ -16,7 +16,7 @@ class PieChart {
                     .attr("width", this.width)
                     .attr("height", this.height)
                     .append("g")
-                    .attr("transform", `translate(${this.width / 2},${this.height / 2})`);
+                    .attr("transform", `translate(${this.width / 2+50},${this.height / 2})`);
         
             this.pie = d3.pie().value(d => d.fatalityCount);
         
@@ -61,7 +61,7 @@ class PieChart {
                     .attr("transform", d => `translate(${chart.arc.centroid(d)})`)
                     .attr("text-anchor", d => (d.endAngle + d.startAngle) / 2 > Math.PI ? "end" : "start")
                     .text(d => `${d.data.gender}: ${Math.round(d.data.fatalityCount)}`)
-                    .attr("fill", "white");
+                    .attr("fill", "indigo");
         };
     
         clear() {
