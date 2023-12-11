@@ -15,11 +15,9 @@
 			/* height: 100vh; */
 		}
 
-		charts {
+		.grid-display {
 			display: grid;
-			grid-template-columns: 1fr 1fr;
-			grid-template-rows: 1fr 1fr;
-			/* gap: 200px; */
+			gap: 50px;
 		}
 
 		#proportional-symbol-map {
@@ -27,21 +25,25 @@
 			grid-column: 1 / 2;
 		}
 
-		#stacked-bar-chart {
-			grid-row: 2 / 3; /* Switched to the second row */
-			grid-column: 1 / 2; /* Remains in the first column */
-		}
-
 		#sankey-chart {
-			grid-row: 1 / 2; /* Switched to the first row */
-			grid-column: 2 / 3; /* Moved to the second column */
-		}
-
-		#pie-chart {
-			grid-row: 2 / 3;
+			grid-row: 1 / 2;
 			grid-column: 2 / 3;
 		}
-        /* Add your custom styles here */
+
+        #bar-chart-legend {
+            grid-row: 1 / 2;
+            grid-column: 2 / 4;
+        }
+        #stacked-bar-chart {
+			grid-row: 1 / 2;
+			grid-column: 1 / 4;
+		}
+		#pie-chart {
+			grid-row: 1 / 2;
+			grid-column: 3 / 4;
+		}
+
+        /* Custom styles for elements in charts */
         .land {
             fill: #ccc; /* Fill color for countries */
             stroke: #fff; /* Border color for countries */
@@ -61,15 +63,16 @@
 </head>
 <body>
 	<h1>Missing Migrants</h1>
-	<div class="charts">
-		<svg id="proportional-symbol-map" height="400" width="800"></svg>
-		<svg id="sankey-chart" height="500" width="500"></svg>
-		<svg id="stacked-bar-chart"></svg>
-	    <svg id="bar-chart-legend"></svg>
-		<svg id="pie-chart"></svg>
-
+	<div class="grid-display">
+		<svg id="proportional-symbol-map" ></svg>
+		<svg id="sankey-chart" ></svg>
 	</div>
-
+    <div class="grid-display">
+        <svg id="bar-chart-legend"></svg>
+		<svg id="stacked-bar-chart"></svg>
+		<svg id="pie-chart"></svg>
+    </div>
+        
     <!-- Include JavaScript files -->
     <script src="scripts/preprocessing.js"></script>
     <script src="scripts/stacked-bar-chart.js"></script>

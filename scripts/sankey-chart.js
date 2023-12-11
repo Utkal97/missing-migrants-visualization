@@ -7,7 +7,6 @@ function renderSankeyChart(csvData, stackedBarChart=null, pieChart=null) {
 
     // Set up the SVG container
     const svg = d3.select('#sankey-chart')
-        .append('svg')
         .attr('width', width)
         .attr('height', height);
 
@@ -81,18 +80,11 @@ function renderSankeyChart(csvData, stackedBarChart=null, pieChart=null) {
 		.on("mouseover", function(d) {
 			// Add your mouseover logic for nodes here
 			// You can access the data of the node using 'd'
-			d3.select(this)
-				.select("rect")
-				.transition()
-				.duration(200);
+		
 		})
 		.on("mouseout", function(d) {
 			// Add your mouseout logic for nodes here
-			d3.select(this)
-				.select("rect")
-				.transition()
-				.duration(200)
-				.attr("stroke", "none");
+			
 		});
 		
 	node

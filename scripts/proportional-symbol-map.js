@@ -9,11 +9,10 @@ function renderProportionalSymbolMap(csvData, stackedBarChart, pieChart) {
 	const regionData = processDataForProportionalSymbolMap(csvData);
 
     // Set up the map container
-    const width = window.innerWidth * 0.55;
-    const height = window.innerHeight * 0.7;
+    const width = 800 ;
+    const height = 500 ;
 
     const svg = d3.select('#proportional-symbol-map')
-        .append('svg')
         .attr('width', width)
         .attr('height', height);
 
@@ -21,7 +20,7 @@ function renderProportionalSymbolMap(csvData, stackedBarChart, pieChart) {
     const projection = d3.geoMercator();
     // Create path generator
     const path = d3.geoPath(projection);
-
+    let filterApplied = false;
     d3.json('https://raw.githubusercontent.com/johan/world.geo.json/master/countries.geo.json').then(data => {
 
         svg.selectAll('path')
@@ -49,26 +48,34 @@ function renderProportionalSymbolMap(csvData, stackedBarChart, pieChart) {
             .on('click', region => {
                 stackedBarChart.clear();
                 pieChart.clear();
-                stackedBarChart = new StackedBarChart(csvData, region.region);
-                stackedBarChart.draw();
-                pieChart = new PieChart(csvData, {region: region.region})
-                pieChart.draw()
+                filterApplied = !filterApplied
+                if(filterApplied) {
+                    stackedBarChart = new StackedBarChart(csvData, region.region);
+                    stackedBarChart.draw();
+                    pieChart = new PieChart(csvData, {region: region.region})
+                    pieChart.draw();
+                } else {
+                    stackedBarChart = new StackedBarChart(csvData);
+                    stackedBarChart.draw();
+                    pieChart = new PieChart(csvData);
+                    pieChart.draw();
+                }
             })
             .on('mouseover', region => {
-                stackedBarChart.clear();
-                pieChart.clear();
-                stackedBarChart = new StackedBarChart(csvData, region.region);
-                stackedBarChart.draw();
-                pieChart = new PieChart(csvData, {region: region.region})
-                pieChart.draw()
+                // stackedBarChart.clear();
+                // pieChart.clear();
+                // stackedBarChart = new StackedBarChart(csvData, region.region);
+                // stackedBarChart.draw();
+                // pieChart = new PieChart(csvData, {region: region.region})
+                // pieChart.draw()
             })
             .on('mouseout', region => {
-                stackedBarChart.clear();
-                pieChart.clear();
-                stackedBarChart = new StackedBarChart(csvData);
-                stackedBarChart.draw();
-                pieChart = new PieChart(csvData)
-                pieChart.draw()
+                // stackedBarChart.clear();
+                // pieChart.clear();
+                // stackedBarChart = new StackedBarChart(csvData);
+                // stackedBarChart.draw();
+                // pieChart = new PieChart(csvData)
+                // pieChart.draw()
             })
             .attr('opacity', 0.8);
     });

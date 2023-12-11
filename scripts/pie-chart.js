@@ -7,7 +7,7 @@ class PieChart {
             this.height = 400;
             this.radius = Math.min(this.width, this.height) / 2.7;
         
-            this.color = d3.scaleOrdinal().range(['#ff5733', '#ffa833', '#33ff57', '#335eff', '#a833ff']);
+            this.color = d3.scaleOrdinal().range(['#1f77b4', '#e377c2', '#ff7f0e']);
     
             // Define a variable to store the currently hovered slice
             this.hoveredSlice = null;

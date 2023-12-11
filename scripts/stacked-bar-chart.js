@@ -3,7 +3,7 @@ class StackedBarChart {
 		this.stackedBarChartData = processDataForStackedBarChart(csvData, region);
 		this.years = this.stackedBarChartData.map(entry => entry.year);
 		this.categories = Object.keys(this.stackedBarChartData[0]).filter(key => key !== 'year');
-		this.width = 800;
+		this.width = 700;
 		this.height = 400;
 		this.svg = d3.select("#stacked-bar-chart")
 			.attr("width", this.width)
@@ -11,7 +11,7 @@ class StackedBarChart {
 
 		this.legendSvg = d3.select("#bar-chart-legend");
 
-		this.margin = {top: 20, right: 0, bottom: 30, left: 200};
+		this.margin = {top: 20, right: 0, bottom: 30, left: 10};
 		
 		this.innerWidth = this.width - this.margin.left - this.margin.right;
 		this.innerHeight = this.height - this.margin.top - this.margin.bottom;
@@ -59,25 +59,25 @@ class StackedBarChart {
 			.enter().append("rect")
 			.attr("x", d => chart.x(d.data.year))
 			.attr("y", d => chart.y(d[1]))
-			.attr("height", d => chart.y(d[0]) - chart.y(d[1]))
+			.attr("height", d => { return chart.y(d[0]) - chart.y(d[1]) || 0;})
 			.attr("width", chart.x.bandwidth())
 			.on("mouseover", function (event, d) {
                 // Highlight the current bar on mouseover with transition
-                d3.select(this)
-                    .transition()
-                    .duration(200) // Adjust the duration as needed
-                    .attr("fill", "orange") // Change the color for highlighting
-					.attr("stroke", "black")
-					.attr("stroke-width", 2);
+                // d3.select(this)
+                //     .transition()
+                //     .duration(200) // Adjust the duration as needed
+                //     .attr("fill", "orange") // Change the color for highlighting
+				// 	.attr("stroke", "black")
+				// 	.attr("stroke-width", 2);
 	
             })
             .on("mouseout", function (event, d) {
                 // Restore the color on mouseout with transition
-                d3.select(this)
-                    .transition()
-                    .duration(200) // Adjust the duration as needed
-                    .attr("fill", d => colorForCategory[(d3.select(this.parentNode).datum().key)])
-					.attr("stroke", "none");
+                // d3.select(this)
+                //     .transition()
+                //     .duration(200) // Adjust the duration as needed
+                //     .attr("fill", d => colorForCategory[(d3.select(this.parentNode).datum().key)])
+				// 	.attr("stroke", "none");
 			});
 		
 		const legend = this.legendSvg.append("g")
