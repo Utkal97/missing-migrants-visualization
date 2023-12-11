@@ -23,10 +23,18 @@ class StackedBarChart {
 		this.y = d3.scaleLinear()
 			.range([this.innerHeight, 0])
 			.domain([0, d3.max(this.stackedBarChartData, d => d3.sum(this.categories, c => d[c]))]);
+		
+		this.colorForCategory = {
+			"Mixed or unknown": "#ff7f0e",	//Orange
+			"Violence": "#d62728",	//Red
+			"Harsh environmental conditions / lack of adequate shelter, food, water": "#8c564b",	//Brown
+			"Drowning": "#1f77b4",	//Blue
+			"Vehicle accident / death linked to hazardous transport": "#e377c2",	//Pink
+			"Sickness / lack of access to adequate healthcare": "#9467bd",	//Purple
+			"Accidental death": "#bcbd22",	//Yellow
+			"Drowning,Mixed or unknown": "#17becf"	//cyan
+		};
 
-		this.color = d3.scaleOrdinal()
-			.range(d3.schemeCategory10);
-    
 		// Define a variable to store the currently hovered bar
 		this.hoveredBar = null;
 
@@ -45,7 +53,7 @@ class StackedBarChart {
 		this.g.selectAll("g")
 			.data(this.stackedData)
 			.enter().append("g")
-			.attr("fill", d => chart.color(d.key))
+			.attr("fill", d => this.colorForCategory[d.key])
 			.selectAll("rect")
 			.data(d => d)
 			.enter().append("rect")
@@ -68,7 +76,7 @@ class StackedBarChart {
                 d3.select(this)
                     .transition()
                     .duration(200) // Adjust the duration as needed
-                    .attr("fill", d => chart.color(d3.select(this.parentNode).datum().key))
+                    .attr("fill", d => colorForCategory[(d3.select(this.parentNode).datum().key)])
 					.attr("stroke", "none");
 			});
 		
@@ -84,7 +92,7 @@ class StackedBarChart {
         legendItems.append("rect")
             .attr("width", 10)
             .attr("height", 10)
-            .attr("fill", d => chart.color(d));
+            .attr("fill", d => this.colorForCategory[d]);
 
         legendItems.append("text")
             .attr("x", 15)
