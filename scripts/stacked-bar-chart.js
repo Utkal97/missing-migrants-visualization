@@ -75,7 +75,7 @@ class StackedBarChart {
             .data(this.categories)
             .enter().append("g")
             .attr("class", "legend-item")
-            .attr("transform", (d, i) => `translate(150, ${i * 15})`); // Adjust spacing as needed
+            .attr("transform", (d, i) => `translate(150, ${i * 15})`);
 
         legendItems.append("rect")
             .attr("width", 10)
@@ -117,9 +117,9 @@ class StackedBarChart {
 		this.svg.append("text")
             .attr("class", "chart-title")
             .attr("x", this.width / 2)
-            .attr("y", this.height - 5 )
+            .attr("y", this.margin.top - 5 )
             .attr("text-anchor", "middle")
-            .style("font-size", "16px") 
+            .style("font-size", "20px") 
             .text(this.title);
 	}
 

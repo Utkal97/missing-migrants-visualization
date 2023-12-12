@@ -58,7 +58,7 @@ function renderSankeyChart(csvData, stackedBarChart=null, pieChart=null) {
 
 	// Define a color scale for nodes
     const nodeColor = d3.scaleOrdinal(d3.schemeCategory10);
-		
+	const opacityScale = d3.scaleLinear().domain([0, d3.max(data.links, (d) => d.dy)]).range([0.3, 1]);
     // Draw nodes
     const node = svg.append("g")
 		.selectAll(".node")
@@ -66,27 +66,20 @@ function renderSankeyChart(csvData, stackedBarChart=null, pieChart=null) {
         .enter().append("g")
         .attr("class", "node")
 		.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-      	// .call(d3.drag()
-        // .subject(function(d) { return d; })
+        .attr("fill", (d, i) => (d.type == "Src" ? nodeColor(i) : "#850b31"))
         .on("start", function() { this.parentNode.appendChild(this); })
-        // .on("drag", dragmove))
-        .attr("fill", (d, i) => nodeColor(i))
 		.on("mouseover", function(d) {
-			// Add your mouseover logic for nodes here
-			// You can access the data of the node using 'd'
-		
+			
 		})
 		.on("mouseout", function(d) {
-			// Add your mouseout logic for nodes here
-			
 		});
 		
-	node
-		.append("rect")
-		  .attr("height", function(d) { return d.dy; })
-		  .attr("width", sankey.nodeWidth())
-		.append("title")
-		  .text(function(d) { return d.name + "\n" + "There were " + d.value + " casualities in this path"; });
+	node.append("rect")
+		  	.attr("height", function(d) { return d.dy; })
+		  	.attr("width", sankey.nodeWidth())
+			.attr("opacity", (d) => (opacityScale(d.dy)))
+			.append("title")
+		 	.text(function(d) { return d.name + "\n" + "There were " + d.value + " casualities in this path"; });
 
 	// add in the title for the nodes
     node

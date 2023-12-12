@@ -59,13 +59,6 @@ function renderProportionalSymbolMap(csvData, stackedBarChart, pieChart) {
                     pieChart = new PieChart(csvData, {region: region.region})
                     pieChart.draw();
 
-                    // svg.append('text')
-                    // .attr('class', 'region-text')
-                    // .attr('x', width / 2)
-                    // .attr('y', height - 20)
-                    // .attr('text-anchor', 'middle')
-                    // .style('font-size', '30px')
-                    // .text(`${region.region} region with ${region.fatalityCount} fatalities over the years`);
                     d3.select('#region-text-container')
                         .append('p')
                         .attr('y', height - 20)
@@ -82,20 +75,17 @@ function renderProportionalSymbolMap(csvData, stackedBarChart, pieChart) {
             })
             .on('mouseover', region => {
                 
-                // stackedBarChart.clear();
-                // pieChart.clear();
-                // stackedBarChart = new StackedBarChart(csvData, region.region);
-                // stackedBarChart.draw();
-                // pieChart = new PieChart(csvData, {region: region.region})
-                // pieChart.draw()
+                d3.select('#region-text-container').selectAll('.region-text').remove();
+                d3.select('#region-text-container')
+                .append('p')
+                .attr('y', height - 20)
+                .attr('class', 'region-text')
+                .text(`${region.region} region with ${region.fatalityCount} fatalities over the years`);
+        
             })
             .on('mouseout', region => {
-                // stackedBarChart.clear();
-                // pieChart.clear();
-                // stackedBarChart = new StackedBarChart(csvData);
-                // stackedBarChart.draw();
-                // pieChart = new PieChart(csvData)
-                // pieChart.draw()
+                
+                // d3.select('#region-text-container').selectAll('.region-text').remove();
             })
             .attr('opacity', 0.8);
     });
