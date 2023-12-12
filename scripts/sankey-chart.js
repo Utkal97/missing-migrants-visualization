@@ -1,7 +1,7 @@
 function renderSankeyChart(csvData, stackedBarChart=null, pieChart=null) {
 
-    const width = 600;
-    const height = 600;
+    const width = 400;
+    const height = 400;
 
     const data = processDataForSankeyChart(csvData);
 
@@ -96,7 +96,7 @@ function renderSankeyChart(csvData, stackedBarChart=null, pieChart=null) {
 			.attr("dy", ".35em")
 			.attr("text-anchor", "end")
 			.attr("transform", null)
-			.style("font-size", "15px")
+			.style("font-size", "12px")
 			.style("fill", "black")
 			.style("font-weight", "bold")
 			.text(function(d) { if(d.value) return d.name; return null;})
@@ -107,7 +107,7 @@ function renderSankeyChart(csvData, stackedBarChart=null, pieChart=null) {
 	// Add a title at the bottom
 	svg.append("text")
 	   .attr("x", width /2 )
-       .attr("y", 80)  // Adjust the position as needed
+       .attr("y", 70)  // Adjust the position as needed
        .attr("text-anchor", "middle")
        .style("font-size", "16px")
        .style("font-weight", "bold")
@@ -116,8 +116,8 @@ function renderSankeyChart(csvData, stackedBarChart=null, pieChart=null) {
 	svg.append("text")
             .attr("class", "left-label")
             .attr("x", 0)
-            .attr("y", 80)
-            .attr("dy", "0.5em")
+            .attr("y", 85)
+            .attr("dy", "0.35em")
             .attr("text-anchor", "start")
             .text("Origin Region");
 
@@ -125,8 +125,8 @@ function renderSankeyChart(csvData, stackedBarChart=null, pieChart=null) {
 	svg.append("text")
             .attr("class", "right-label")
             .attr("x", width - 100)
-            .attr("y", 80)
-            .attr("dy", "0.5em")
+            .attr("y", 85)
+            .attr("dy", "0.35em")
             .attr("text-anchor", "start")
             .text("Incident Region");
 }

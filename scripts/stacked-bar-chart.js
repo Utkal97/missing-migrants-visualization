@@ -3,7 +3,7 @@ class StackedBarChart {
 		this.stackedBarChartData = processDataForStackedBarChart(csvData, region);
 		this.years = this.stackedBarChartData.map(entry => entry.year);
 		this.categories = Object.keys(this.stackedBarChartData[0]).filter(key => key !== 'year');
-		this.width = 700;
+		this.width = 500;
 		this.height = 400;
 		this.svg = d3.select("#stacked-bar-chart")
 			.attr("width", this.width)
@@ -75,7 +75,7 @@ class StackedBarChart {
             .data(this.categories)
             .enter().append("g")
             .attr("class", "legend-item")
-            .attr("transform", (d, i) => `translate(0, ${i * 15})`); // Adjust spacing as needed
+            .attr("transform", (d, i) => `translate(150, ${i * 15})`); // Adjust spacing as needed
 
         legendItems.append("rect")
             .attr("width", 10)
