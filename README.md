@@ -1,7 +1,8 @@
 # missing-migrants-visualizations
 A Data Visualization Project that visualizes a Missing Migrants dataset.
 
-Link to demo video: https://youtu.be/nz61ownSiQU
+Link to video: https://www.youtube.com/watch?v=nz61ownSiQU&feature=youtu.be
+Page: https://utkal97.github.io/missing-migrants-visualization/
 
 Overview :
 Migrants often face perilous conditions and challenges along the way, which can lead to tragic outcomes. The Missing Migrants Project has diligently collected data on such incidents worldwide since 2014. This project aims to shed light on this critical issue and provide valuable insights into the patterns of migration and the challenges migrants face during their journeys. With 13021 incidents and 17 relevant attributes, we have a robust dataset that can be leveraged to gain meaningful insights.
