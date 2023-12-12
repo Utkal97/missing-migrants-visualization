@@ -9,8 +9,8 @@ function renderProportionalSymbolMap(csvData, stackedBarChart, pieChart) {
 	const regionData = processDataForProportionalSymbolMap(csvData);
 
     // Set up the map container
-    const width = 800 ;
-    const height = 500 ;
+    const width = 900 ;
+    const height = 600 ;
 
     const svg = d3.select('#proportional-symbol-map')
         .attr('width', width)
@@ -46,7 +46,9 @@ function renderProportionalSymbolMap(csvData, stackedBarChart, pieChart) {
             })
             .attr('fill', 'red')
             .on('click', region => {
-                svg.selectAll('.region-text').remove();
+                d3.select('#region-text-container').selectAll('.region-text').remove();
+
+                // svg.selectAll('.region-text').remove();
                 
                 stackedBarChart.clear();
                 pieChart.clear();
@@ -57,13 +59,18 @@ function renderProportionalSymbolMap(csvData, stackedBarChart, pieChart) {
                     pieChart = new PieChart(csvData, {region: region.region})
                     pieChart.draw();
 
-                    svg.append('text')
-                    .attr('class', 'region-text')
-                    .attr('x', width / 2)
-                    .attr('y', height - 20)
-                    .attr('text-anchor', 'middle')
-                    .style('font-size', '30px')
-                    .text(`${region.region} region with ${region.fatalityCount} fatalities over the years`);
+                    // svg.append('text')
+                    // .attr('class', 'region-text')
+                    // .attr('x', width / 2)
+                    // .attr('y', height - 20)
+                    // .attr('text-anchor', 'middle')
+                    // .style('font-size', '30px')
+                    // .text(`${region.region} region with ${region.fatalityCount} fatalities over the years`);
+                    d3.select('#region-text-container')
+                        .append('p')
+                        .attr('y', height - 20)
+                        .attr('class', 'region-text')
+                        .text(`${region.region} region with ${region.fatalityCount} fatalities over the years`);
                 } else {
                     stackedBarChart = new StackedBarChart(csvData);
                     stackedBarChart.draw();

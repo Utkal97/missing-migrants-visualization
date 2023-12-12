@@ -65,9 +65,9 @@ class PieChart {
 					});
     
             arcs.append("text")
-                    .attr("transform", d => `translate(${chart.arc.centroid(d)})`)
+                    .attr("transform", d => `translate(${chart.arc.centroid(d)+5})`)
                     .attr("text-anchor", d => (d.endAngle + d.startAngle) / 2 > Math.PI ? "end" : "start")
-                    .text(d => `${d.data.gender}: ${Math.round(d.data.fatalityCount)}`)
+                    .text(d => `${d.data.gender}: ${Math.round(d.data.fatalityCount)}%`)
                     .attr("fill", "white")
 					.style("opacity", 0)  // Set initial opacity to 0
 					.transition()  // Apply transition for animations

@@ -1,7 +1,7 @@
 function renderSankeyChart(csvData, stackedBarChart=null, pieChart=null) {
 
-    const width = 500;
-    const height = 500;
+    const width = 600;
+    const height = 600;
 
     const data = processDataForSankeyChart(csvData);
 
@@ -45,12 +45,6 @@ function renderSankeyChart(csvData, stackedBarChart=null, pieChart=null) {
 				.duration(200)
 				.attr("stroke", "black")
 				.attr("stroke-width", 2);
-				// stackedBarChart.clear();
-                // pieChart.clear();
-                // stackedBarChart = new StackedBarChart(csvData, d.target);
-                // stackedBarChart.draw();
-                // pieChart = new PieChart(csvData, {region: d.target})
-                // pieChart.draw()
 		})
 
 		.on("mouseout", function(d) {
@@ -123,16 +117,16 @@ function renderSankeyChart(csvData, stackedBarChart=null, pieChart=null) {
             .attr("class", "left-label")
             .attr("x", 0)
             .attr("y", 80)
-            .attr("dy", "0.35em")
+            .attr("dy", "0.5em")
             .attr("text-anchor", "start")
             .text("Origin Region");
 
 			
 	svg.append("text")
             .attr("class", "right-label")
-            .attr("x", 400)
+            .attr("x", width - 100)
             .attr("y", 80)
-            .attr("dy", "0.35em")
+            .attr("dy", "0.5em")
             .attr("text-anchor", "start")
             .text("Incident Region");
 }

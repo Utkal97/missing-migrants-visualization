@@ -9,15 +9,18 @@
 		h1 {
 			text-align: center;
 			margin-top: 20px;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
 		}
 		
         body {
 			/* height: 100vh; */
+            font-family:  Geneva, Tahoma, sans-serif;
+            background-color: #c8c8cf;
 		}
 
 		.grid-display {
 			display: grid;
-			gap: 50px;
+			gap: 10px;
             margin-bottom: 50px;
 		}
 
@@ -30,6 +33,12 @@
 			grid-row: 1 / 2;
 			grid-column: 2 / 2;
 		}
+
+        #region-text-container {
+            grid-row: 2 / 2;
+            grid-column: 1 / 2;
+            font-size: 25px
+        }
 
         #stacked-bar-chart {
 			grid-row: 1 / 2;
@@ -47,21 +56,15 @@
 		}
 
         /* Custom styles for elements in charts */
-        .land {
-            fill: #ccc; /* Fill color for countries */
-            stroke: #fff; /* Border color for countries */
-            stroke-width: 1; /* Border width for countries */
+        .left-label {
+            fill: black; /* Adjust the color as needed */
+            font-size: 14px; /* Adjust the font size as needed */
         }
 
-        .left-label {
-    fill: black; /* Adjust the color as needed */
-    font-size: 14px; /* Adjust the font size as needed */
-}
-
-.right-label {
-    fill: black; /* Adjust the color as needed */
-    font-size: 14px; /* Adjust the font size as needed */
-}
+        .right-label {
+            fill: black; /* Adjust the color as needed */
+            font-size: 14px; /* Adjust the font size as needed */
+        }
 
         .incident-point {
             fill: red; /* Point color */
@@ -78,6 +81,7 @@
 	<h1>Missing Migrants</h1>
 	<div class="grid-display">
 		<svg id="proportional-symbol-map" ></svg>
+        <div id="region-text-container"></div>
 		<svg id="sankey-chart" ></svg>
 	</div>
     <div class="grid-display">
