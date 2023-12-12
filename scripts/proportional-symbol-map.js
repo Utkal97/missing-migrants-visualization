@@ -46,6 +46,8 @@ function renderProportionalSymbolMap(csvData, stackedBarChart, pieChart) {
             })
             .attr('fill', 'red')
             .on('click', region => {
+                svg.selectAll('.region-text').remove();
+                
                 stackedBarChart.clear();
                 pieChart.clear();
                 filterApplied = !filterApplied
@@ -54,14 +56,25 @@ function renderProportionalSymbolMap(csvData, stackedBarChart, pieChart) {
                     stackedBarChart.draw();
                     pieChart = new PieChart(csvData, {region: region.region})
                     pieChart.draw();
+
+                    svg.append('text')
+                    .attr('class', 'region-text')
+                    .attr('x', width / 2)
+                    .attr('y', height - 20)
+                    .attr('text-anchor', 'middle')
+                    .style('font-size', '30px')
+                    .text(`${region.region} region with ${region.fatalityCount} fatalities over the years`);
                 } else {
                     stackedBarChart = new StackedBarChart(csvData);
                     stackedBarChart.draw();
                     pieChart = new PieChart(csvData);
                     pieChart.draw();
                 }
+
+                
             })
             .on('mouseover', region => {
+                
                 // stackedBarChart.clear();
                 // pieChart.clear();
                 // stackedBarChart = new StackedBarChart(csvData, region.region);

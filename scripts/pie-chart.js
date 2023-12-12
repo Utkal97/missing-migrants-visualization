@@ -16,14 +16,13 @@ class PieChart {
                     .attr("width", this.width)
                     .attr("height", this.height)
                     .append("g")
-                    .attr("transform", `translate(${this.width / 2+50},${this.height / 2})`);
+                    .attr("transform", `translate(${this.width / 2},${this.height / 2})`);
         
             this.pie = d3.pie().value(d => d.fatalityCount);
         
             this.arc = d3.arc()
                         .innerRadius(0)
-                        .outerRadius(this.radius)
-                        .cornerRadius(8); // Add corner radius for a better look;
+                        .outerRadius(this.radius);
         }
     
         draw() {
@@ -55,13 +54,25 @@ class PieChart {
     
             arcs.append("path")
                     .attr("fill", (d, i) => chart.color(i))
-                    .attr("d", chart.arc);
+                    .attr("d", chart.arc)
+					.transition()
+					.duration(1000)
+					.attrTween("d", function (d) {
+						const interpolate = d3.interpolate({ startAngle: 0, endAngle: 0 }, d);
+						return function (t) {
+							return chart.arc(interpolate(t));
+						};
+					});
     
             arcs.append("text")
                     .attr("transform", d => `translate(${chart.arc.centroid(d)})`)
                     .attr("text-anchor", d => (d.endAngle + d.startAngle) / 2 > Math.PI ? "end" : "start")
                     .text(d => `${d.data.gender}: ${Math.round(d.data.fatalityCount)}`)
-                    .attr("fill", "indigo");
+                    .attr("fill", "white")
+					.style("opacity", 0)  // Set initial opacity to 0
+					.transition()  // Apply transition for animations
+					.duration(1000)  // Set the duration of the animation (in milliseconds)
+					.style("opacity", 1);
         };
     
         clear() {

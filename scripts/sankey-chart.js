@@ -72,10 +72,10 @@ function renderSankeyChart(csvData, stackedBarChart=null, pieChart=null) {
         .enter().append("g")
         .attr("class", "node")
 		.attr("transform", function(d) { return "translate(" + d.x + "," + d.y + ")"; })
-      	.call(d3.drag()
-        .subject(function(d) { return d; })
+      	// .call(d3.drag()
+        // .subject(function(d) { return d; })
         .on("start", function() { this.parentNode.appendChild(this); })
-        .on("drag", dragmove))
+        // .on("drag", dragmove))
         .attr("fill", (d, i) => nodeColor(i))
 		.on("mouseover", function(d) {
 			// Add your mouseover logic for nodes here
@@ -112,23 +112,27 @@ function renderSankeyChart(csvData, stackedBarChart=null, pieChart=null) {
 
 	// Add a title at the bottom
 	svg.append("text")
-	   .attr("x", width / 2)
-       .attr("y", height + 30)  // Adjust the position as needed
+	   .attr("x", width /2 )
+       .attr("y", 80)  // Adjust the position as needed
        .attr("text-anchor", "middle")
        .style("font-size", "16px")
        .style("font-weight", "bold")
        .text("Sankey Chart for Migration Movements");
 			
-	// the function for moving the nodes
-	function dragmove(d) {
-		// d3.select(this)
-		// .attr("transform",
-		// 		"translate("
-		// 		+ d.x + ","
-		// 		+ (d.y = Math.max(
-		// 			0, Math.min(height - d.dy, d3.event.y))
-		// 			) + ")");
-		// sankey.relayout();
-		// link.attr("d", sankey.link() );
-	}
+	svg.append("text")
+            .attr("class", "left-label")
+            .attr("x", 0)
+            .attr("y", 80)
+            .attr("dy", "0.35em")
+            .attr("text-anchor", "start")
+            .text("Origin Region");
+
+			
+	svg.append("text")
+            .attr("class", "right-label")
+            .attr("x", 400)
+            .attr("y", 80)
+            .attr("dy", "0.35em")
+            .attr("text-anchor", "start")
+            .text("Incident Region");
 }

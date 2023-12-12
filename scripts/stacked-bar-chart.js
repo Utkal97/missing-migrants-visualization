@@ -11,7 +11,7 @@ class StackedBarChart {
 
 		this.legendSvg = d3.select("#bar-chart-legend");
 
-		this.margin = {top: 20, right: 0, bottom: 30, left: 10};
+		this.margin = {top: 20, right: 0, bottom: 50, left: 50};
 		
 		this.innerWidth = this.width - this.margin.left - this.margin.right;
 		this.innerHeight = this.height - this.margin.top - this.margin.bottom;
@@ -45,6 +45,8 @@ class StackedBarChart {
 
 		this.g = this.svg.append("g")
 			.attr("transform", `translate(${this.margin.left},${this.margin.top})`);
+
+		this.title = region ? `Fatalities in ${region} over the years` : "Fatalities over the years";
 	}
 
 	draw() {
@@ -58,27 +60,13 @@ class StackedBarChart {
 			.data(d => d)
 			.enter().append("rect")
 			.attr("x", d => chart.x(d.data.year))
+			.attr("y", d => chart.innerHeight)
+			.attr("height", 0)  // Set initial height to 0
+            .attr("width", chart.x.bandwidth())
+			.transition()
+			.duration(1000)
 			.attr("y", d => chart.y(d[1]))
-			.attr("height", d => { return chart.y(d[0]) - chart.y(d[1]) || 0;})
-			.attr("width", chart.x.bandwidth())
-			.on("mouseover", function (event, d) {
-                // Highlight the current bar on mouseover with transition
-                // d3.select(this)
-                //     .transition()
-                //     .duration(200) // Adjust the duration as needed
-                //     .attr("fill", "orange") // Change the color for highlighting
-				// 	.attr("stroke", "black")
-				// 	.attr("stroke-width", 2);
-	
-            })
-            .on("mouseout", function (event, d) {
-                // Restore the color on mouseout with transition
-                // d3.select(this)
-                //     .transition()
-                //     .duration(200) // Adjust the duration as needed
-                //     .attr("fill", d => colorForCategory[(d3.select(this.parentNode).datum().key)])
-				// 	.attr("stroke", "none");
-			});
+			.attr("height", d => { return chart.y(d[0]) - chart.y(d[1]) || 0;});
 		
 		const legend = this.legendSvg.append("g")
             .attr("class", "legend");
@@ -111,6 +99,7 @@ class StackedBarChart {
 			.attr("fill", "#000")
 			.attr("transform", "rotate(-90)")
 			.attr("y", 6)
+			.attr("font-size", "15px")
 			.attr("dy", "0.71em")
 			.attr("text-anchor", "end")
 			.text("Fatalities");
@@ -119,10 +108,24 @@ class StackedBarChart {
 			.attr("transform", `translate(${this.width / 2},${this.height - this.margin.bottom + 30})`)
 			.style("text-anchor", "middle")
 			.text("Year");
+
+		this.svg.append("text")
+			.attr("transform", "rotate(-90)")
+			.style("text-anchor", "middle")
+			.text("Fatalities");
+
+		this.svg.append("text")
+            .attr("class", "chart-title")
+            .attr("x", this.width / 2)
+            .attr("y", this.height - 5 )
+            .attr("text-anchor", "middle")
+            .style("font-size", "16px") 
+            .text(this.title);
 	}
 
 	clear() {
 		this.g.selectAll("g").remove(); // Clear previous chart elements
+		this.svg.selectAll("text").remove();
 		this.legendSvg.select(".legend").remove();
 	}
 }
